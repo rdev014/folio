@@ -1,5 +1,6 @@
 import React,{useState,useRef} from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 import {styles} from '../styles';
 import {EarthCanvas} from './canvas';
@@ -15,7 +16,7 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 const handleChange =(e) =>{
-  const {name, value} =e.target;
+  const {name, value} = e.target;
   setform({...form ,[name]:value})
 }
 
@@ -24,19 +25,19 @@ const handleSubmit =(e) =>{
   setLoading(true);
 
   emailjs.send(
-    // service id
-    // template id
+    'service_p3m7n2h',
+    'template_jly8mik',
     {
-      from_name:from.name,
+      from_name:form.name,
       to_name:"Dev",
       from_email:form.email,
-      to_email:'myemail@gmail.com',
+      to_email:'jorgjack40@gmail.com',
       message:form.message,
     },
-    // public key
+    '4d4NkSTB4w8-zJM5p'
   ).then(()=>{
     setLoading(false);
-    alert("Thank You");
+    alert("Thank You I'll get back to you soon.");
 
 setform({
   name:"",
@@ -46,7 +47,7 @@ setform({
 setLoading(false)
 
   console.log(error);
-  alert("Somethinf went wrong")
+  alert("Something went wrong")
 })
 
   })
